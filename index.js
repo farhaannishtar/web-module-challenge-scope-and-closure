@@ -121,8 +121,10 @@ Use the scoreboard function below to do the following:
   3. Receive a number of innings to be played
   4. Return an array where each of it's index values equals a string stating the
   Home and Away team's scores for each inning.  Not the cummulative score.
-  5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:  "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
-     If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  (see no tie example below)
+  5. If there's a tie at the end of the innings, add this message containing the score to the end of the array:
+    "This game will require extra innings: Away 12 - Home 12"  (see tie example below)
+    If there isn't a tie, add this message to the end of the array: "Final Score: Away 13 - Home 11"  
+    (see no tie example below)
   
   NO TIE example: invoking scoreboard(getInningScore,inning, 9) might return 
   an array of strings like this:
@@ -155,12 +157,27 @@ Use the scoreboard function below to do the following:
 ]  
   */
 
-function scoreboard(/* CODE HERE */) {
+function scoreboard(getInningScore, inning, numInningsToBePlayed) {
   /* CODE HERE */
+  let scoreboard = [];
+  let awaySum = 0;
+  let homeSum = 0;
+  for (let i = 0; i < numInningsToBePlayed; i++) {
+    let away = inning();
+    let home = inning();
+    awaySum += away;
+    homeSum += home
+    scoreboard.push(`Inning 1: Away ${away} - Home ${home}`);
+  }
+  if (awaySum === homeSum) {
+    scoreboard.push('Tie');
+  } else {
+    scoreboard.push(`"Final Score: Away ${awaySum} - Home ${homeSum}`);
+  }
+  return scoreboard;
 }
 
-
-
+console.log(scoreboard(getInningScore,inning, 9));
 
 /* 🛑🛑🛑🛑🛑 Please do not modify anything below this line 🛑🛑🛑🛑🛑 */
 function foo(){
