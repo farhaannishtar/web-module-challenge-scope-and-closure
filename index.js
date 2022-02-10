@@ -16,23 +16,28 @@
 function processFirstItem(stringList, callback) {
   return callback(stringList[0])
 }
-console.log(processFirstItem(['foo','bar'],function(str){return str+str}));
+console.log(processFirstItem(['foo','bar'], function(str){return str+str}));
 
 // ⭐️ Example Challenge END ⭐️
 
 
 ///// M V P ///////
 
-/*Task 1: counterMaker()
+/* Task 1: counterMaker()
   
   Study the code for counter1 and counter2, then answer the questions below.
   
   1. What is the difference between counter1 and counter2?
-  
+      Counter1 is a function whose counter variable is in function scope. Counter2 is a function whose 
+      counter variable is in global scope.
+
   2. Which of the two uses a closure? How can you tell?
-  
+      Counter1 function uses closure because the counter variable updates with each function call.
+
   3. In what scenario would the counter1 code be preferable? In what scenario would 
      counter2 be better?  
+      If we want to keep track of the value counter with counter1, then counter1 would be preferable.
+      If we want to have the counter variable reset after each function call, we should choose counter2 function  
 */
 
 // counter1 code
@@ -64,6 +69,7 @@ NOTE: This will be a callback function for the tasks below
 
 function inning(/*Code Here*/){
     /*Code Here*/
+    return Math.floor(Math.random() * 2);
 }
 
 
@@ -81,8 +87,18 @@ Use the finalScore function below to do the following:
 }
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inning, numInningsToBePlayed){
   /*Code Here*/
+  let home = 0;
+  let away = 0;
+  for (let i = 0; i < numInningsToBePlayed; i++){
+    home += inning();
+    away += inning();
+  }
+  return {
+    "Home": home,
+    "Away": away
+  };
 }
 
 /* ⚾️⚾️⚾️ Task 4: getInningScore() ⚾️⚾️⚾️
@@ -90,8 +106,11 @@ Use the getInningScore() function below to do the following:
   1. Receive a callback function - you will pass in the inning function from task 2 as your argument 
   2. Return an object with a score for home and a score for away that populates from invoking the inning callback function */
 
-function getInningScore(/*Your Code Here */) {
+function getInningScore(inning) {
   /*Your Code Here */
+  let home = inning();
+  let away = inning();
+  return { "Home": home, "Away": away };
 }
 
 
